@@ -41,18 +41,13 @@ searchButton.click(function (){
 
             // Current Weather Append
             var currentCard = $(".currentCard");
-            // currentCard.empty();
-            // var currentName = currentCard.append("<p>");
-            // currentCard.append(currentName);
 
             // Date adjustment
             var timeUTC = new Date(response.dt * 1000);
             currentCard.append(response.name + " " + timeUTC.toLocaleDateString("en-US"));
             currentCard.append(`<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`);
-            // Add temperature
-            // var currentTemp = currentName.append("<p>");
-            // currentName.append(currentTemp);
-            currentCard.append("<p>" + "Temperature: " + response.main.temp + "</p>");
+           
+            currentCard.append("<p>" + "Temperature: " + response.main.temp + "°F" + "</p>");
 
             currentCard.append("<p>" + "Humidity: " + response.main.humidity + "%" + "</p>");
 
@@ -86,7 +81,7 @@ searchButton.click(function (){
                 FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
 
 
-                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
+                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "°F" + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
                 
             })
 
