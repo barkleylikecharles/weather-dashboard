@@ -19,11 +19,10 @@ img {
 }
 /* styles for five day forecast colors */
 .fiveDayColor {
-    padding: 20px;
+    padding: 10px;
     background-color: #1e7fe0;
     color: white;
     float: left;
     margin: 10px;
     border: 1px solid lightgray;
-
 }

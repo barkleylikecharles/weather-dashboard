@@ -63,6 +63,15 @@ searchButton.click(function (){
                 var currentUV = currentCard.append(`<p> UV Index: ${response.value} </p>`).addClass("card-text");
                 currentUV.addClass("UV");
                 // currentTemp.append(currentUV);
+                // if (currentUV >= 11) {
+                //     uvColor = "violet";
+                // } else if (currentUV >= 8) {
+                //     uvColor = "red";
+                // } else if (currentUV >= 6) {
+                //     uvColor = "orange";
+                // } else if (currentUV >= 3) {
+                //     uvColor = "yellow";
+                // }
             });
         });
 
@@ -81,10 +90,11 @@ searchButton.click(function (){
                 FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
 
 
-                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "°F" + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
+                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temp: " + response.list[i].main.temp + "°F" + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
                 
             })
 
         });
+        localStorage.getItem(keyCount, response.name)
     }
 });
