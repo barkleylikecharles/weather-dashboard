@@ -10,7 +10,7 @@ Check the daily weather of your city or any city.  Learn the temperature, humidi
 Project Completed by Nicole Barkley. [GitHub Profile] (https://github.com/barkleylikecharles)
 
 ## Website
-https://barkleylikecharles.github.io/work-day-scheduler/
+https://barkleylikecharles.github.io/weather-dashboard/
 
 ## Screenshot
 <img width="1306" alt="image" src="https://user-images.githubusercontent.com/97490354/160316416-0450ddc9-63ca-40de-b822-996d22e664ed.png">
