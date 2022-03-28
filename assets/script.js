@@ -16,7 +16,7 @@ for (var i = 0; i < localStorage.length; i++) {
 }
 
 var keyCount = 0;
-
+// Add search functionality for current weather and five day
 searchButton.click(function (){
 
     var searchInput = $(".searchInput").val();
@@ -65,8 +65,8 @@ searchButton.click(function (){
                 // currentTemp.append(currentUV);
                 // if (currentUV >= 11) {
                 //     uvColor = "violet";
-                // } else if (currentUV >= 8) {
-                //     uvColor = "red";
+                // // } else if (currentUV >= 8) {
+                // //     uvColor = "red";
                 // } else if (currentUV >= 6) {
                 //     uvColor = "orange";
                 // } else if (currentUV >= 3) {
@@ -91,10 +91,11 @@ searchButton.click(function (){
 
 
                 fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="https://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temp: " + response.list[i].main.temp + "°F" + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
-                
+             
+                localStorage.getItem(keyCount, response.name)
             })
 
         });
-        localStorage.getItem(keyCount, response.name)
+        // localStorage.getItem(keyCount, response.name)
     }
 });
