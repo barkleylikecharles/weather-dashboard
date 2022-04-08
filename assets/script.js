@@ -13,6 +13,7 @@ var formSubmitHandler = function(event) {
 
         if (cityName) {
         getCurrentWeather(cityName);
+        getForecastedWeather(cityName);
          cityInputEl.value = "";
         } else {
          alert("Please enter a City Name in the search bar");
@@ -25,7 +26,7 @@ var formSubmitHandler = function(event) {
 // var saveCity = function(){
 //     localStorage.setItem("cities", JSON.stringify(cities));
 // };
-// Variable to store API key to utilize in two different API calls
+// Variable to store API key to utilize in three different API calls
 var weatherApiKey = "86796ec06d4bd2ee10aac5628e1bb374"
 // Function to fetch the API data for current weather forecast using city name search functionality
 var getCurrentWeather = function (cityName) {
@@ -51,7 +52,7 @@ var displayCurrentWeather = function(weather, citySearch) {
 
    //Use moment to check and return current date for display
    var currentDate = document.createElement("span")
-   currentDate.textContent=" (" + moment(weather.dt.value).format("MMMM D, YYYY") + ") ";
+   currentDate.textContent=" (" + moment(weather.dt.value).format("M/D/YYYY") + ") ";
    citySearchTerm.appendChild(currentDate);
 
   //Utilize open weather api's weather icons and append 
@@ -78,4 +79,48 @@ var displayCurrentWeather = function(weather, citySearch) {
    currentWeatherContainerEl.appendChild(windSpeedEl);
   
   };
+// Function to fetch 5 day forecase from one-call open weather API
+var getForecastedWeather = function (cityName) {
+    var url5DayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName+ "&appid=" + weatherApiKey +"&units=imperial";
 
+    fetch(url5DayForecast).then(function(response) {
+        console.log(response);
+        response.json().then(function(data) {
+            console.log(data);
+        });
+    });
+};
+// var display5DayForecast = function(weather, citySearch) {
+//     console.log(weather);
+//     console.log(citySearch);
+// 
+
+//    //Use moment to check and return current date for display
+//    var currentDate = document.createElement("span")
+//    currentDate.textContent=" (" + moment(weather.dt.value).format("M/D/YYYY") + ") ";
+//    citySearchTerm.appendChild(currentDate);
+
+//   //Utilize open weather api's weather icons and append 
+//    var weatherIcon = document.createElement("img")
+//    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
+//    currentWeatherContainerEl.appendChild(weatherIcon);
+
+//    //Temperature display utilizing a span element
+//    var tempEl = document.createElement("span");
+//    tempEl.textContent = "Current Temp: " + weather.main.temp + " °F";
+//    tempEl.classList = "list-group-item"
+//    currentWeatherContainerEl.appendChild(tempEl);
+
+//    //Humidity display utilizing a span element
+//    var humidityEl = document.createElement("span");
+//    humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
+//    humidityEl.classList = "list-group-item";
+//    currentWeatherContainerEl.appendChild(humidityEl);
+
+//    //Wind Speed display utilizing a span element
+//    var windSpeedEl = document.createElement("span");
+//    windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
+//    windSpeedEl.classList = "list-group-item";
+//    currentWeatherContainerEl.appendChild(windSpeedEl);
+  
+//   };
