@@ -12,63 +12,38 @@
 </head>
 
 <body>
-    <header class="hero .bg-primary">
+    <header class="hero .bg-primary col">
         <h1 class="text-center"></i> Weather Dashboard</h1>
     </header>
 
-    <!-- Javascript Functionaility -->
-    <!-- Bootstrap, -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> -->
-    <main class="flex-row justify-space-between">
-        <div class="col-12 col-md-4">
-            <div class = "card">
-                <h3 class = "card-header text-uppercase">Search By City</h3>
-                <form  id="search-form" class="card-body">
-                  <label class="form-label" for="cityName">Weather Forecast by City</label>
-                  <input name="cityName" id="cityName" type="text" autofocus="true" class="form-input" />
-                  <button type="submit" class="btn">Get Weather Forecast</button> 
-                </form>
-              </div>
-        </div>
-      
-        <div class="col-12 col-md-8"></div>
-      </main>
-    <!-- <div class ="container-fluid .bg-primary">
-        <div class="card p-3 mb-2 bg-info text-white display-4 text-center">
-                <h1>Weather Dashboard</h1>
-    </div>
-
     <div class="container">
         <div class="row">
-            <div class ="col-3">
-                <div class="card-body text-center">
-
-                    <div class="card">
-
-                        <div class="card-body">
-                            <h3 class="card-subtitle">Search For A City</h3>
-                            <div class="input-group">
-                                <input type="text" class="searchInput" placeholder="Enter City Name">
-                                <div class="input-group-append">
-                                    <button class="btn btn-info searchButton" type="button"
-                                    id="button-addon">
-                                    </button>
-                                </div>
-                            </div>
-                            <ul class="list-group">
-
-                        </ul>
+                <div class="col-3">
+                    <div class = "card">
+                        <h3 class = "card-header text-uppercase">Search By City</h3>
+                        <form  id="search-form" class="card-body">
+                        <label class="form-label" for="cityName">Weather Forecast by City</label>
+                        <input name="cityName" id="cityName" type="text" autofocus="true" class="form-input" />
+                        <button type="submit" class="btn">Get Weather Forecast</button> 
+                        </form>
                     </div>
+                </div>
+            
+                <div class="col-9">
+                    <h2 class="text-center">Showing Current Weather for: <span id="city-search-form"></span></h2>
+                    <div id="current-weather-container" class="list-group"></div>
                 </div>
             </div>
         </div>
 
-        Append Current Weather
+
+
+        <!-- Append Current Weather
     
         <div class="col-9">
             <div class="card currentCard pt-1" id="currentWeather">
                 <h3 class="card-title">Current Forecast</h3>
-            </div>
+            </div> -->
         
         < Update 5 day forecast -->
         <!-- <div class="col">
