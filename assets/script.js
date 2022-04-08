@@ -12,8 +12,27 @@
     
 // }
 
+// Create variables for handling & storing the search form inputs 
+var searchFormEl = document.querySelector("#search-form");
+var cityInputEl = document.querySelector("#cityName");
+
+// Add submit functionality
+var formSubmitHandler = function(event) {
+    event.preventDefault();
+    
+    var cityName = cityInputEl.value.trim();
+
+        if (cityName) {
+        getCurrentWeather(cityName);
+         cityInputEl.value = "";
+        } else {
+         alert("Please enter a City Name in the search bar");
+        }
+    console.log(event);
+  };
+// Variable to store API key to utilize in two different API calls
 var weatherApiKey = "86796ec06d4bd2ee10aac5628e1bb374"
-// Get longitute and latitude 
+// Function to fetch the API data for current weather forecast using city name search functionality
 var getCurrentWeather = function (cityName) {
     var urlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName+ "&appid=" + weatherApiKey + "&units=imperial";
 
@@ -24,4 +43,4 @@ var getCurrentWeather = function (cityName) {
         });
     });
 };
-getCurrentWeather("hartford");
+searchFormEl.addEventListener("submit", formSubmitHandler);
