@@ -51,7 +51,7 @@ var displayCurrentWeather = function(weather, citySearch) {
     citySearchTerm.textContent = citySearch;
 
    //Use moment to check and return current date for display
-   var currentDate = document.createElement("span")
+   var currentDate = document.createElement("p")
    currentDate.textContent=" (" + moment(weather.dt.value).format("M/D/YYYY") + ") ";
    citySearchTerm.appendChild(currentDate);
 
@@ -61,33 +61,33 @@ var displayCurrentWeather = function(weather, citySearch) {
    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
    currentWeatherContainerEl.appendChild(weatherIcon);
 
-   //Temperature display utilizing a span element
+   //Temperature display utilizing a p element
    var tempEl = document.createElement("p");
    tempEl.textContent = "Current Temp: " + Math.round(weather.main.temp) + " °F";
    tempEl.classList = "list-group-item"
    currentWeatherContainerEl.appendChild(tempEl);
 
-   //Humidity display utilizing a span element
-   var humidityEl = document.createElement("span");
+   //Humidity display utilizing a p element
+   var humidityEl = document.createElement("p");
    humidityEl.textContent = "Humidity: " + Math.round(weather.main.humidity) + " %";
    humidityEl.classList = "list-group-item";
    currentWeatherContainerEl.appendChild(humidityEl);
 
-   //Wind Speed display utilizing a span element
-   var windSpeedEl = document.createElement("span");
+   //Wind Speed display utilizing a p element
+   var windSpeedEl = document.createElement("p");
    windSpeedEl.textContent = "Wind Speed: " + Math.round(weather.wind.speed) + " MPH";
    windSpeedEl.classList = "list-group-item";
    currentWeatherContainerEl.appendChild(windSpeedEl);
   
   };
 // Function to fetch 5 day forecast from 5 Day/3 Hour open weather API
-var getForecastedWeather = function (cityName) {
+var get5DayForecast = function (cityName) {
     var url5DayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName+ "&appid=" + weatherApiKey +"&units=imperial";
 
     fetch(url5DayForecast).then(function(response) {
         console.log(response);
         response.json().then(function(data) {
-            display5DayForecast(data, cityName)
+            // display5DayForecast(data, cityName)
         });
     });
 };
@@ -95,26 +95,51 @@ var display5DayForecast = function(weather, citySearch) {
     console.log(weather);
     console.log(citySearch);
 
-    
-// For loop to loop through the array returned from url5DayForecast
-    var forecast = weather.list;
-        for(var i=0; i<forecast.length; i++) {
-            var dailyForecast = forecast[i];
+var date, temp, precipitation, windspeed;
 
-            var dailyForecastEl=document.createElement("div");
-            dailyForecastEl.classList = "list-item flex-row justify-space-between align-center";
-          
-            // create a span element to hold Forecast Date
-            var forecastDateEl = document.createElement("div");
-            forecastDateEl.textContent = " (" + moment(weather.dt.value).format("M/D/YYYY") + ") ";
-          
-            // append to container
-            forecast.appendChild(forecastDateEl);
-          
-            // append container to the dom
-            displayFiveDayForecastEl.appendChild(forecast);
+    function displayForecast(data) {
+        
+        for(var i = 0; i < 5; i=i+8){
+            date = list[i].main.dt_txt;
+            temp = list[i].main.temp;
+            precipitation = list[i].main.precipitation;
+            windspeed = list[i].wind.speed;
+            console.log(main[i].dt_txt);
+    
+            createCard(date, temp, precipitation, windspeed);
         }
-}
+    }
+    
+    function createCard(date, temp, precipitation, windspeed){
+        var card = document.createElement("div");
+        card.innerHTML = `
+        <h4>${t}</h4>
+        <p>${a}</p>
+        <p><a href="${u}" class="text-xl text-red-500" target="_blank">READ MORE</a></p>
+        `;
+    
+        document.getElementById('card-2').appendChild(card);
+    
+    }   
+// For loop to loop through the array returned from url5DayForecast
+    // var forecast = weather.list;
+    //     for(var i=0; i<forecast.length; i++) {
+    //         var dailyForecast = forecast[i];
+
+    //         var dailyForecastEl=document.createElement("div");
+    //         dailyForecastEl.classList = "list-item flex-row justify-space-between align-center";
+          
+    //         // create a span element to hold Forecast Date
+    //         var forecastDateEl = document.createElement("div");
+    //         forecastDateEl.textContent = " (" + moment(weather.dt.value).format("M/D/YYYY") + ") ";
+          
+    //         // append to container
+    //         forecast.appendChild(forecastDateEl);
+          
+    //         // append container to the dom
+    //         displayFiveDayForecastEl.appendChild(forecast);
+        }
+
 // 
 
 //    //Use moment to check and return current date for display

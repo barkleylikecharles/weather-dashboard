@@ -20,27 +20,29 @@
         <div class="row">
                 <div class="col-3">
                     <div class = "card">
-                        <h3 class = "card-header text-uppercase">Search By City</h3>
+                        <h2 class = "card-header text-uppercase">Search By City</h2>
                         <form  id="search-form" class="card-body">
-                        <label class="form-label" for="cityName">Weather Forecast by City</label>
+                        <label class="form-label" for="cityName">Weather Forecast</label>
                         <input name="cityName" id="city-name" type="text" autofocus="true" class="form-input" />
-                        <button type="submit" class="btn">Get Weather Forecast</button> 
+                        <button type="submit" class="btn">Get Weather</button> 
                         </form>
                     </div>
                 </div>
             
-                <div class="col-9">
+        <div class="col-9">
+                <div>
                     <h2 class="text-center">Showing Current Weather for: <span id="city-search-form"></span></h2>
                     <div id="current-weather-container" class="list-group"></div>
                 </div>
-            </div>
-        </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-             <h2 class="text-center">5 Day Forecast For: <span id="city-search-form"></span></h2>
-            <div id="forecasted-weather-container" class="list-group"></div>
+                <div>
+                    <h2 class="text-center">5 Day Forecast For: <span id="city-search-form"></span></h2>
+                    <div id="card-1"></div>
+                    <div id="card-2"></div>
+                    <div id="card-3"></div>
+                    <div id="card-4"></div>
+                    <div id="card-5"></div>
+                    <div id="forecasted-weather-container" class="list-group"></div>
+                </div>
         </div>
     </div>
 
