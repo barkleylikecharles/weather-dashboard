@@ -19,13 +19,17 @@
     <div class="container">
         <div class="row">
                 <div class="col-3">
-                    <div class = "card">
-                        <h2 class = "card-header text-uppercase">Search By City</h2>
-                        <form  id="search-form" class="card-body">
+                    <div class = "search-bar">
+                        <h5 class = "card-header text-uppercase">Search By City</h5>
+                            <form  id="search-form" class="card-body">
                         <label class="form-label" for="cityName">Weather Forecast</label>
                         <input name="cityName" id="city-name" type="text" autofocus="true" class="form-input" />
                         <button type="submit" class="btn">Get Weather</button> 
                         </form>
+
+                        <div class="saved-cities">
+                            
+                        </div>
                     </div>
                 </div>
             
@@ -34,15 +38,27 @@
                     <h2 class="text-center">Showing Current Weather for: <span id="city-search-form"></span></h2>
                     <div id="current-weather-container" class="list-group"></div>
                 </div>
-                <div>
-                    <h2 class="text-center">5 Day Forecast For: <span id="city-search-form"></span></h2>
+               <div><h2 class="text-center">5 Day Forecast <span id="city-search-form"></span></h2></div>
+               <div class ="container" id="current-weather-container">
+                <div class="row">
+                <div class ="col-2 card">
                     <div id="card-1"></div>
+                    </div>
+                    <div class ="col-2 card">
                     <div id="card-2"></div>
+                    </div>
+                    <div class ="col-2 card">
                     <div id="card-3"></div>
+                    </div>
+                    <div class ="col-2 card">
                     <div id="card-4"></div>
+                    </div>
+                    <div class ="col-2 card">
                     <div id="card-5"></div>
-                    <div id="forecasted-weather-container" class="list-group"></div>
+                    </div>
                 </div>
+                    <!-- <div id="forecasted-weather-container" class="list-group"></div>
+                </div> -->
         </div>
     </div>
 
@@ -69,6 +85,7 @@
         
     </div>
 <!-- Add javascript file -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js" ></script>  
     <script src="./assets/script.js"></script>
 <!-- Add Moment  -->
 
