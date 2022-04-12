@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <header class="hero .bg-primary col">
-        <h1 class="text-center"></i> Weather Dashboard</h1>
+    <header class="hero">
+        <h1> Weather Dashboard</h1>
     </header>
 
     <div class="container">
@@ -21,14 +21,15 @@
                 <div class="col-3">
                     <div class = "search-bar">
                         <h5 class = "card-header text-uppercase">Search By City</h5>
-                            <form  id="search-form" class="card-body">
-                        <label class="form-label" for="cityName">Weather Forecast</label>
-                        <input name="cityName" id="city-name" type="text" autofocus="true" class="form-input" />
+                            <form  id="search-form" class="">
+                        <label class="form-label" for="cityName"></label>
+                        <input name="cityName" id="city-name" type="text" autofocus="true" class="form-input"></input>
+                        <br>
                         <button type="submit" class="btn">Get Weather</button> 
                         </form>
 
                         <div class="saved-cities">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -61,35 +62,11 @@
                 </div> -->
         </div>
     </div>
-
-
-
-        <!-- Append Current Weather
-    
-        <div class="col-9">
-            <div class="card currentCard pt-1" id="currentWeather">
-                <h3 class="card-title">Current Forecast</h3>
-            </div> -->
-        
-        <!-- <div class="col">
-            <div class="col mt-4 d-flex justify-content-center" id="fiveDayWeather">
-                 <div class="card pb-5 pl-5" id="fiveDayWeather"> -->
-                    <!-- <h4 class="card-title d-flex justify-content-center">5-Day Forecast</h4>
-                    <div class="row">
-                            <div class="col fiveDay">
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div> --> 
         
     </div>
-<!-- Add javascript file -->
+<!-- Add Moment file -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js" ></script>  
     <script src="./assets/script.js"></script>
-<!-- Add Moment  -->
-
-
-    
+ 
 </body>
 </html>

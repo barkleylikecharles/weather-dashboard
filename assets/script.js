@@ -4,29 +4,38 @@ var searchFormEl = document.querySelector("#search-form");
 var cityInputEl = document.querySelector("#city-name");
 var currentWeatherContainerEl = document.querySelector("#current-weather-container");
 var citySearchTerm = document.querySelector("#city-search-form");
-var fiveDayForecastCard = document.querySelector("#forecasted-weather-container")
+var fiveDayForecastCard = document.querySelector("#forecasted-weather-container");
+var savedCitiesContainerEl = document.querySelector("saved-cities");
 
 // Add submit functionality
 var formSubmitHandler = function(event) {
     event.preventDefault();
-    
+// City entry variable for use in multiple functions (getCurrentWeather, saveCity) 
     var cityName = cityInputEl.value.trim();
 
         if (cityName) {
         getCurrentWeather(cityName);
+        saveCity(cityName);
         // get5DayForecast(cityName);
          cityInputEl.value = "";
         } else {
          alert("Please enter a City name in the search bar");
         }
-        // Save city search input to call back later from list
-    //     saveCity();
-    // console.log(event);
-  };
-//Function to save the city searches to local storage
-// var saveCity = function(){
-//     localStorage.setItem("cities", JSON.stringify(cities));
-// };
+    };
+
+    //Function to save the city searches to local storage
+var cities = []
+var saveCity = function () {
+    localStorage.setItem("cities", JSON.stringify(cities));
+    console.log(cities)
+    // saveCity.createElement('button');
+    // button.innerHTML = cityName;
+
+    // button.onclick = function () {
+    //     getCurrentWeather(cityName);
+    // };
+    // savedCitiesContainerEl.appendChild(saveCity);
+};
 // Variable to store API key to utilize in three different API calls
 var weatherApiKey = "86796ec06d4bd2ee10aac5628e1bb374"
 // Function to fetch the API data for current weather forecast using city name search functionality
@@ -49,11 +58,11 @@ var displayCurrentWeather = function(weather, citySearch) {
     console.log(citySearch);
     // Clear old input from search bar
     currentWeatherContainerEl.textContent = "";
-    citySearchTerm.textContent = citySearch;
+    citySearchTerm.textContent = citySearch.toUpperCase();
 
    //Use moment to check and return current date for display
    var currentDate = document.createElement("p")
-   currentDate.textContent=" (" + moment(weather.dt.value).format("M/D/YYYY") + ") ";
+   currentDate.textContent=" (" + moment(weather.dt.value).format("M/D/YY") + ") ";
    citySearchTerm.appendChild(currentDate);
 
   //Utilize open weather api's weather icons and append 
@@ -85,7 +94,7 @@ var displayCurrentWeather = function(weather, citySearch) {
    console.log(lat, lon)
    getForecast(lat, lon);
 };
-
+// Open Weather API One Call to get UVI and daily weather forecast for 5 days
   var getForecast = function (lat, lon) {
     var urlDailyAndUvi = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + weatherApiKey;
 
@@ -99,12 +108,18 @@ var displayCurrentWeather = function(weather, citySearch) {
             UviEl.classList = "list-group-item";
             UviEl.textContent = "UVI:" + data.current.uvi;
             currentWeatherContainerEl.appendChild(UviEl)
+            
+            //Note severity of UV Index with color
+            // if (UviEl < 2) 
+
+            // if (UviEl < 6 )
+        
 
             for (var i=1; i<6; i++){
              var targetCard = document.querySelector("#card-" + i);
              
              var dateEl = document.createElement("p");
-             dateEl.textContent = moment(data.daily[i].dt * 1000).format("M D YYYY")
+             dateEl.textContent = moment(data.daily[i].dt * 1000).format("M/D/YY")
              targetCard.appendChild(dateEl);
 
              var weatherIconEl = document.createElement('img');
@@ -116,7 +131,7 @@ var displayCurrentWeather = function(weather, citySearch) {
              targetCard.appendChild(tempEl);
 
              var windSpeedEl = document.createElement('p');
-             windSpeedEl.textContent = "Wind Speed:" + Math.round(data.daily[i].wind_speed) + "MPH"
+             windSpeedEl.textContent = "Wind:" + Math.round(data.daily[i].wind_speed) + " mph"
              targetCard.appendChild(windSpeedEl);
 
              var humidityEl = document.createElement('p');
@@ -131,78 +146,8 @@ var displayCurrentWeather = function(weather, citySearch) {
         });
     });
 };
-    // });
-    // fetch(urlCurrent).then(function(response) {
-    // console.log(response);
-    // response.json().then(function(data) {
-    //     displayCurrentWeather(data, cityName);
-    //     // console.log(data);
+   
     
-// Function to fetch 5 day forecast from 5 Day/3 Hour open weather API
-// var get5DayForecast = function (cityName) {
-//     var url5DayForecast = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName+ "&appid=" + weatherApiKey +"&units=imperial";
 
-//     fetch(url5DayForecast).then(function(response) {
-//         console.log(response);
-//         response.json().then(function(data) {
-//             display5DayForecast(data, cityName)
-//         });
-//     });
-// };
-// var display5DayForecast = function(weather, citySearch) {
-//     console.log(weather);
-//     console.log(citySearch);
-
-//     for(var i = 0; i < weather.list.length; i=i+8){
-//         console.log(weather.list[i]);
-//     }
-
-    
-// }
-// var date, temp, precipitation, windspeed, icon;
-//     // function displayForecast(weather, citySearch) {
-        
-//         for(var i = 0; i < 5; i=i+8){
-//             date = weather[i].daily.dt;
-//             temp = weather[i].daily.temp;
-//             precipitation = weather[i].daily.rain;
-//             windspeed = weather[i].daily.wind_speed;
-//             icon = weather[i].daily.weather.icon;
-//             console.log(date);
-    
-//             createCard(date, temp, precipitation, windspeed);
-//         }
-//     }
-    
-//     function createCard(date, temp, precipitation, windspeed){
-//         var card = document.createElement("div");
-//         card.innerHTML = `
-//         <h4>${t}</h4>
-//         <p>${a}</p>
-//         <p><a href="${u}" class="text-xl text-red-500" target="_blank">READ MORE</a></p>
-//         `;
-    
-//         document.getElementById('card-2').appendChild(card);
-    
-//     }   
-// For loop to loop through the array returned from url5DayForecast
-    // var forecast = weather.list;
-    //     for(var i=0; i<forecast.length; i++) {
-    //         var dailyForecast = forecast[i];
-
-    //         var dailyForecastEl=document.createElement("div");
-    //         dailyForecastEl.classList = "list-item flex-row justify-space-between align-center";
-          
-    //         // create a span element to hold Forecast Date
-    //         var forecastDateEl = document.createElement("div");
-    //         forecastDateEl.textContent = " (" + moment(weather.dt.value).format("M/D/YYYY") + ") ";
-          
-    //         // append to container
-    //         forecast.appendChild(forecastDateEl);
-          
-    //         // append container to the dom
-    //         displayFiveDayForecastEl.appendChild(forecast);
         
 
-
-  
