@@ -15,7 +15,7 @@ var formSubmitHandler = function(event) {
 
         if (cityName) {
         getCurrentWeather(cityName);
-        saveCity(cityName);
+        // saveCity(cityName);
         // get5DayForecast(cityName);
          cityInputEl.value = "";
         } else {
@@ -24,18 +24,20 @@ var formSubmitHandler = function(event) {
     };
 
     //Function to save the city searches to local storage
-var cities = []
-var saveCity = function () {
-    localStorage.setItem("cities", JSON.stringify(cities));
-    console.log(cities)
-    // saveCity.createElement('button');
-    // button.innerHTML = cityName;
+// var cities = []
+// var saveCity = function (cityName) {
+//     localStorage.setItem("cities", JSON.stringify(cities));
+//     console.log(cities);
+//     savedCitiesContainerEl.document.createElement("li")
+//     savedCitiesContainerEl.appendChild(saveCity, cities);
+//     // saveCity.createElement('button');
+//     // button.innerHTML = cityName;
 
-    // button.onclick = function () {
-    //     getCurrentWeather(cityName);
-    // };
-    // savedCitiesContainerEl.appendChild(saveCity);
-};
+//     // button.onclick = function () {
+//     //     getCurrentWeather(cityName);
+//     // };
+//     // savedCitiesContainerEl.appendChild(saveCity);
+// };
 // Variable to store API key to utilize in three different API calls
 var weatherApiKey = "86796ec06d4bd2ee10aac5628e1bb374"
 // Function to fetch the API data for current weather forecast using city name search functionality
@@ -46,6 +48,7 @@ var getCurrentWeather = function (cityName) {
         console.log(response);
         response.json().then(function(data) {
             displayCurrentWeather(data, cityName);
+            // saveCity(cityName)
             // console.log(data);
         });
     });
@@ -109,10 +112,13 @@ var displayCurrentWeather = function(weather, citySearch) {
             UviEl.textContent = "UVI:" + data.current.uvi;
             currentWeatherContainerEl.appendChild(UviEl)
             
-            //Note severity of UV Index with color
-            // if (UviEl < 2) 
-
-            // if (UviEl < 6 )
+            //Note severity of UV Index with colors (green, yellow, red, violet)
+            if (data.current.uvi < 2) {
+            UviEl.classList = "UVI-low"}
+            
+            //  } else if (data.current.uvi > 2) {
+            // UviEl.classList = "UVI-mid"
+            
         
 
             for (var i=1; i<6; i++){
@@ -138,9 +144,6 @@ var displayCurrentWeather = function(weather, citySearch) {
              humidityEl.textContent = "Humidity:" + data.daily[i].humidity + " %";
              targetCard.appendChild(humidityEl);
             }
-
-        
-
 
 
         });
