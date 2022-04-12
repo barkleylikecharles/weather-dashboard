@@ -13,7 +13,7 @@ Project Completed by Nicole Barkley. [GitHub Profile] (https://github.com/barkle
 https://barkleylikecharles.github.io/weather-dashboard/
 
 ## Screenshot
-<img width="1306" alt="image" src="https://user-images.githubusercontent.com/97490354/160316416-0450ddc9-63ca-40de-b822-996d22e664ed.png">
+![image](https://user-images.githubusercontent.com/97490354/162881122-ef1fad9d-b869-4351-bd8e-c0c4583b3043.png)
 
 ## License
 MIT License
